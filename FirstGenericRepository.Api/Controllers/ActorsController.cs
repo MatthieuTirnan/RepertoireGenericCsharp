@@ -16,6 +16,17 @@ namespace FirstGenericRepository.Api.Controllers
 
             return Ok(actorFromRepo);
         }
+        [HttpGet]
+        [Route("{id}")]
+        public ActionResult GetbyId(
+            [FromRoute]
+            int id
+            )
+        {
+            var actorFromRepo = _unitOfWork.Actor.GetById(id);
+
+            return Ok(actorFromRepo);
+        }
 
         [HttpGet("movies")]
         public ActionResult GetWithMovies()
