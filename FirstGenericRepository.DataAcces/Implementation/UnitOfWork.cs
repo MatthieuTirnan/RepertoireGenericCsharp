@@ -3,6 +3,7 @@ using FirstGenericRepository.Domain.Repository;
 
 namespace FirstGenericRepository.DataAcces.Implementation
 {
+
     public class UnitOfWork : IUnitOfWork
     {
         private readonly FirstGenericRepositoryDbContext _context;
@@ -14,6 +15,7 @@ namespace FirstGenericRepository.DataAcces.Implementation
             Genre = new GenreRepository(_context);
             Movie = new MovieRepository(_context);
             Biography = new BiographyRepository(_context);
+            User = new UserRepository(_context);
         }
 
         public IActorRepository Actor { get; private set; }
@@ -23,7 +25,7 @@ namespace FirstGenericRepository.DataAcces.Implementation
         public IGenreRepository Genre { get; private set; }
         public IMovieRepository Movie { get; private set; }
 
-
+        public IUserRepository User { get; private set; }
 
         public void Dispose()
         {

@@ -4,7 +4,9 @@ namespace FirstGenericRepository.Domain.Repository
 {
     public interface IGenericRepository<T> where T : class
     {
-        T GetById(int id);
+        T? GetById(int id);
+
+        T? GetByGuid(Guid id);
         IEnumerable<T> GetAll();
 
         IEnumerable<T> Find(Expression<Func<T, bool>> predicate);

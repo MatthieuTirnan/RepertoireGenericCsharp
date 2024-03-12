@@ -4,6 +4,7 @@ using FirstGenericRepository.DataAcces.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FirstGenericRepository.DataAcces.Migrations
 {
     [DbContext(typeof(FirstGenericRepositoryDbContext))]
-    partial class FirstGenericRepositoryDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240310154132_addRole")]
+    partial class addRole
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -179,6 +182,15 @@ namespace FirstGenericRepository.DataAcces.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("4da1f869-64c3-468e-893e-9c8ec99185b2"),
+                            Password = "AdminPassword",
+                            Role = 0,
+                            Username = "AdminMail"
+                        });
                 });
 
             modelBuilder.Entity("GenreMovie", b =>

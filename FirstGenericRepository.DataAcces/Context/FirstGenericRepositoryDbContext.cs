@@ -7,6 +7,8 @@ namespace FirstGenericRepository.DataAcces.Context
     {
         public DbSet<Actor> Actors { get; set; }
         public DbSet<Movie> Movies { get; set; }
+
+        public DbSet<User> Users { get; set; }
         public DbSet<Biography> Biography { get; set; }
         public DbSet<Genre> genres { get; set; }
 

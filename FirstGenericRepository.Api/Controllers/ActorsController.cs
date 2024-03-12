@@ -1,5 +1,7 @@
-﻿using FirstGenericRepository.Domain.Repository;
+﻿using FirstGenericRepository.Api.Helpers;
+using FirstGenericRepository.Domain.Repository;
 using Microsoft.AspNetCore.Mvc;
+using Shared.Enums;
 
 namespace FirstGenericRepository.Api.Controllers
 {
@@ -9,13 +11,16 @@ namespace FirstGenericRepository.Api.Controllers
     {
         private readonly IUnitOfWork _unitOfWork = unitOfWork;
 
+
         [HttpGet]
+        [AuthorizeRoles(RoleEnum.Admin, RoleEnum.Aucun)]
         public ActionResult Get()
         {
             var actorFromRepo = _unitOfWork.Actor.GetAll();
 
             return Ok(actorFromRepo);
         }
+
         [HttpGet]
         [Route("{id}")]
         public ActionResult GetbyId(

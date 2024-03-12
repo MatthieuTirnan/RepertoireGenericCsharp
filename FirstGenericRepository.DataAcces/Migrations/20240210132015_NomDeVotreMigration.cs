@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
@@ -7,7 +8,7 @@
 namespace FirstGenericRepository.DataAcces.Migrations
 {
     /// <inheritdoc />
-    public partial class firstMigration : Migration
+    public partial class NomDeVotreMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -37,6 +38,19 @@ namespace FirstGenericRepository.DataAcces.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_genres", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Users",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Username = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Users", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -115,6 +129,11 @@ namespace FirstGenericRepository.DataAcces.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "Users",
+                columns: new[] { "Id", "Password", "Username" },
+                values: new object[] { new Guid("dd33333b-b5b8-4ce7-8882-bd803e486fda"), "AdminPassword", "AdminMail" });
+
+            migrationBuilder.InsertData(
                 table: "Movies",
                 columns: new[] { "Id", "ActorId", "Description", "Name" },
                 values: new object[,]
@@ -150,6 +169,9 @@ namespace FirstGenericRepository.DataAcces.Migrations
 
             migrationBuilder.DropTable(
                 name: "GenreMovie");
+
+            migrationBuilder.DropTable(
+                name: "Users");
 
             migrationBuilder.DropTable(
                 name: "Movies");

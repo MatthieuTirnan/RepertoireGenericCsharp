@@ -31,7 +31,9 @@ namespace FirstGenericRepository.DataAcces.Implementation
             return _context.Set<T>().ToList();
         }
 
-        public T GetById(int id) => _context.Set<T>().Find(id);
+        public T? GetByGuid(Guid id) => _context.Set<T>().Find(id);
+
+        public T? GetById(int id) => _context.Set<T>().Find(id);
 
         public void Remove(T entity)
         {

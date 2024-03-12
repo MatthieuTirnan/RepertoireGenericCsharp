@@ -9,6 +9,8 @@
         IGenreRepository Genre { get; }
 
         IMovieRepository Movie { get; }
+
+        IUserRepository User { get; }
         int Save();
     }
 }
